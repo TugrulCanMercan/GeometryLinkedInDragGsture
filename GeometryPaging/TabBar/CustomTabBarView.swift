@@ -24,12 +24,14 @@ struct CustomTabBarView: View {
     }
     private func tabView2(tab: TabBarItem) -> some View {
         ZStack {
-
+        
             VStack{
                 Image(systemName: tab.iconName)
                     .font(.subheadline)
                 Text(tab.title)
-                    .font(.system(size: 10, weight: .semibold, design: .rounded))
+                    .lineLimit(0)
+                    
+                    .font(.system(size: 8, weight: .semibold, design: .rounded))
             }
             .foregroundColor(localSelection == tab ? tab.color : Color.gray)
             .padding()

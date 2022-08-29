@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct LinkedInHomePage: View {
+    @State private var tabSelection: TabBarItem = .home
     init(){
         UITableView.appearance().backgroundColor = .systemGray6
     }
@@ -17,9 +18,20 @@ struct LinkedInHomePage: View {
             
             HomeSearchBar()
            
-            HomeCellView()
                 
+            TabBarContainerView(selection: $tabSelection) {
+                HomeCellView()
+                    .tabBarItem(tab: .home, selection: $tabSelection)
+                Rectangle()
+                    .tabBarItem(tab: .network, selection: $tabSelection)
+                Rectangle()
+                    .tabBarItem(tab: .send, selection: $tabSelection)
+                Rectangle()
+                    .tabBarItem(tab: .notification, selection: $tabSelection)
+                Rectangle()
+                    .tabBarItem(tab: .jobPosting, selection: $tabSelection)
                 
+            }
 
         }
         

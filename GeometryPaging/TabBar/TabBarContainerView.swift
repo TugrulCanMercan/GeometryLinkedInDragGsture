@@ -21,7 +21,7 @@ struct TabBarContainerView<Content:View>: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .ignoresSafeArea()
             CustomTabBarView(tabs: tabs, selection: $selection, localSelection: selection)
-  
+            
         }
         .ignoresSafeArea()
         .onPreferenceChange(TabBarItemsPreferenceKey.self, perform: { value in
@@ -38,24 +38,27 @@ struct TabBarContainerView_Previews: PreviewProvider {
     }
 }
 
-public enum TabBarItem: Hashable {
-    case home, network, profile, messages
+enum TabBarItem: Hashable {
+    case home, network,send ,notification ,jobPosting
     
     var iconName: String {
         switch self {
         case .home: return "house"
         case .network: return "person.2"
-        case .profile: return "person"
-        case .messages: return "message"
+        case .send: return "plus.square"
+        case .notification: return "bell.fill"
+        case .jobPosting: return "latch.2.case"
+            
         }
     }
     
     var title: String {
         switch self {
-        case .home: return "Home"
-        case .network: return "person.2"
-        case .profile: return "Profile"
-        case .messages: return "Messages"
+        case .home: return "Ana Sayfa"
+        case .network: return "Ağım"
+        case .send: return "Gönder"
+        case .notification: return "Bildirimler"
+        case .jobPosting: return "İş İlanları"
         }
     }
     
@@ -63,8 +66,10 @@ public enum TabBarItem: Hashable {
         switch self {
         case .home: return Color.gray
         case .network: return Color.gray
-        case .profile: return Color.gray
-        case .messages: return Color.gray
+        case .send: return Color.gray
+        case .notification: return Color.gray
+        case .jobPosting: return Color.gray
         }
     }
 }
+
