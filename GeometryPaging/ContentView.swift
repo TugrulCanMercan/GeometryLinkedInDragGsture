@@ -11,7 +11,7 @@ struct ContentView: View {
     
     
     @GestureState var gestureOffset:CGFloat = .zero
-    @State var sideBarWidth = UIScreen.main.bounds.width / 2
+    @State var sideBarWidth = UIScreen.main.bounds.width / 1.5
     @State var offset:CGFloat = .zero
     @State var currentPosition:CGFloat = .zero
     @State var currentIndex:Double = 0
@@ -20,6 +20,7 @@ struct ContentView: View {
     var fullWidth = UIScreen.main.bounds.width
     
     @State var val = 1
+    
     var body: some View {
         ZStack{
             GeometryReader { proxy in
@@ -27,11 +28,9 @@ struct ContentView: View {
                 let height = proxy.size.height
                 
                 HStack(spacing:0) {
-                    Rectangle()
-                        .fill(Color.red)
-                        .frame(width: width/2, height: height)
-                    Rectangle()
-                        .fill(Color.blue)
+                    LinkedInSideBar()
+                        .frame(width: width/1.5, height: height)
+                    LinkedInHomePage()
                         .frame(width: width, height: height)
                     Rectangle()
                         .fill(Color.pink)
@@ -59,7 +58,7 @@ struct ContentView: View {
                             print("offset\(offset)")
                             
                             if gestureOffset != 0 {
-                                if gestureOffset + lastStoredOffset <= 2 * sideBarWidth && gestureOffset + lastStoredOffset >= -2 * sideBarWidth{
+                                if gestureOffset + lastStoredOffset <= 1.5 * sideBarWidth && gestureOffset + lastStoredOffset >= -1.5 * sideBarWidth{
                                     offset =  gestureOffset + lastStoredOffset
                                 } else {
                                     offset = lastStoredOffset
@@ -74,7 +73,7 @@ struct ContentView: View {
                             let trans = value.translation.width
                             print("trans\(trans)")
                             if trans > 0 {
-                                if trans > (sideBarWidth / 2) && -lastStoredOffset != sideBarWidth * 2{
+                                if trans > (sideBarWidth / 1.5) && -lastStoredOffset != sideBarWidth * 1.5{
                                     withAnimation(.easeInOut.speed(2)) {
                                         offset = sideBarWidth
                                     }
@@ -99,26 +98,15 @@ struct ContentView: View {
                                         }
                                     } else {
                                         withAnimation(.easeInOut.speed(2)) {
-                                            offset = -sideBarWidth * 2
+                                            offset = -sideBarWidth * 1.5
                                         }
                                     }
                                 }
                             }
                             lastStoredOffset = offset
                         })
-                    
-                    
-                    
-                    
                 )
             }
-            
-            
-            HStack{
-                Text("\(currentIndex)")
-                Text("\(index)")
-            }
-            
         }
     }
 }
