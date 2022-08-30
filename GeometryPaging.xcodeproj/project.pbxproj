@@ -13,6 +13,7 @@
 		E41B2EB428BD7F0A008AC7FD /* TabBarContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41B2EB128BD7F0A008AC7FD /* TabBarContainerView.swift */; };
 		E41FE1A028BD3D460097B1D7 /* LinkedInSideBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41FE19F28BD3D460097B1D7 /* LinkedInSideBar.swift */; };
 		E41FE1A328BD45900097B1D7 /* LinkedInHomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41FE1A228BD45900097B1D7 /* LinkedInHomePage.swift */; };
+		E4A2F4C528BE086C0065CA5A /* MessageViewPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A2F4C428BE086C0065CA5A /* MessageViewPage.swift */; };
 		E4A9CF8928B8AD0F0049FE9F /* GeometryPagingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A9CF8828B8AD0F0049FE9F /* GeometryPagingApp.swift */; };
 		E4A9CF8B28B8AD0F0049FE9F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A9CF8A28B8AD0F0049FE9F /* ContentView.swift */; };
 		E4A9CF8D28B8AD110049FE9F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4A9CF8C28B8AD110049FE9F /* Assets.xcassets */; };
@@ -26,6 +27,7 @@
 		E41B2EB128BD7F0A008AC7FD /* TabBarContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarContainerView.swift; sourceTree = "<group>"; };
 		E41FE19F28BD3D460097B1D7 /* LinkedInSideBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedInSideBar.swift; sourceTree = "<group>"; };
 		E41FE1A228BD45900097B1D7 /* LinkedInHomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedInHomePage.swift; sourceTree = "<group>"; };
+		E4A2F4C428BE086C0065CA5A /* MessageViewPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewPage.swift; sourceTree = "<group>"; };
 		E4A9CF8528B8AD0F0049FE9F /* GeometryPaging.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeometryPaging.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4A9CF8828B8AD0F0049FE9F /* GeometryPagingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometryPagingApp.swift; sourceTree = "<group>"; };
 		E4A9CF8A28B8AD0F0049FE9F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 			children = (
 				E41FE1A228BD45900097B1D7 /* LinkedInHomePage.swift */,
 				E41B2EAC28BD5672008AC7FD /* HomeCellView.swift */,
+				E4A2F4C428BE086C0065CA5A /* MessageViewPage.swift */,
 			);
 			path = LinkedInHomePage;
 			sourceTree = "<group>";
@@ -187,6 +190,7 @@
 				E41FE1A028BD3D460097B1D7 /* LinkedInSideBar.swift in Sources */,
 				E41B2EB428BD7F0A008AC7FD /* TabBarContainerView.swift in Sources */,
 				E41B2EAD28BD5672008AC7FD /* HomeCellView.swift in Sources */,
+				E4A2F4C528BE086C0065CA5A /* MessageViewPage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

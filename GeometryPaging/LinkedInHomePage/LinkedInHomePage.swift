@@ -91,7 +91,7 @@ struct HomeSearchBar:View {
                         }
                     }
                     .frame(maxWidth: .infinity )
-                    .padding()
+               
                 }
             if !searchViewShow {
                 Image(systemName: "message.fill")
@@ -99,6 +99,6 @@ struct HomeSearchBar:View {
                     .frame(width: 40, height: 40)
             }
         }
-        .padding()
+        .padding(.horizontal)
     }
 }

@@ -32,8 +32,7 @@ struct ContentView: View {
                         .frame(width: width/1.5, height: height)
                     LinkedInHomePage()
                         .frame(width: width, height: height)
-                    Rectangle()
-                        .fill(Color.pink)
+                    MessageViewPage()
                         .frame(width: width, height: height)
                 }
                 
