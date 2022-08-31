@@ -20,6 +20,7 @@ struct LinkedInHomePage: View {
            
                 
             TabBarContainerView(selection: $tabSelection) {
+                
                 HomeCellView()
                     .tabBarItem(tab: .home, selection: $tabSelection)
                 Rectangle()
@@ -54,6 +55,12 @@ struct HomeSearchBar:View {
             if searchViewShow {
                 Image(systemName: "arrow.backward")
                     .frame(width: 40, height: 40)
+                    .onTapGesture {
+                        withAnimation {
+                            searchViewShow = false
+
+                        }
+                    }
             } else {
                 Image("TugrulImage")
                     .resizable()
@@ -61,38 +68,55 @@ struct HomeSearchBar:View {
                     .clipShape(Circle())
                     .frame(width: 40, height: 40)
             }
-            RoundedRectangle(cornerRadius: 8)
-                .fill(Color(UIColor.systemGray5))
-                .frame(height: 40)
-                .overlay {
-                    HStack(spacing: 8) {
-                        if !searchViewShow {
-                            Image(systemName: "magnifyingglass")
-                        }
-                        TextField(text: $searchText) {
-                            Text("İş ilanlarını arayın")
-                                .foregroundColor(.gray)
-                        }
-                        .simultaneousGesture(TapGesture().onEnded {
-                            print("Textfield pressed")
-                            withAnimation {
-                                searchViewShow = true
+            if searchViewShow {
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(Color(UIColor.systemGray5))
+                    .frame(height: 40)
+                    .overlay {
+                        HStack(spacing: 8) {
+                            if !searchViewShow {
+                                Image(systemName: "magnifyingglass")
                             }
-                        })
-                        .onSubmit {
-                            print("submit")
-                            withAnimation {
-                                searchViewShow = false
+                            
+                            TextField(text: $searchText) {
+                                Text("İş ilanlarını arayın")
+                                    .foregroundColor(.gray)
+                            }
+                            .simultaneousGesture(TapGesture().onEnded {
+                                print("Textfield pressed")
+                                withAnimation {
+                                    searchViewShow = true
+                                }
+                            })
+                            .onSubmit {
+                                print("submit")
+                                withAnimation {
+                                    searchViewShow = false
+                                }
+                            }
+                            Spacer()
+                            if searchViewShow {
+                                Image(systemName: "qrcode.viewfinder")
                             }
                         }
-                        Spacer()
-                        if searchViewShow {
-                            Image(systemName: "qrcode.viewfinder")
+                        .frame(maxWidth: .infinity )
+                   
+                    }
+            } else {
+                
+                Text("Ana Sayfa")
+                    .font(.system(size: 30))
+                Spacer()
+                Image(systemName: "magnifyingglass")
+                    .foregroundColor(.gray)
+                    .frame(width: 40, height: 40)
+                    .onTapGesture {
+                        withAnimation {
+                            searchViewShow = true
                         }
                     }
-                    .frame(maxWidth: .infinity )
-               
-                }
+            }
+    
             if !searchViewShow {
                 Image(systemName: "message.fill")
                     .foregroundColor(.gray)

@@ -16,12 +16,15 @@ struct TabBarContainerView<Content:View>: View {
         self._selection = selection
     }
     var body: some View {
-        ZStack(alignment: .bottom) {
-            content
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .ignoresSafeArea()
-            CustomTabBarView(tabs: tabs, selection: $selection, localSelection: selection)
+        VStack {
+            ZStack(alignment: .bottom) {
+                content
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .ignoresSafeArea()
             
+                
+            }
+            CustomTabBarView(tabs: tabs, selection: $selection, localSelection: selection)
         }
         .ignoresSafeArea()
         .onPreferenceChange(TabBarItemsPreferenceKey.self, perform: { value in

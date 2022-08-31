@@ -19,7 +19,7 @@ struct MessageViewPage: View {
                                                                  personName: "Tuğrul Can Mercan",
                                                                  shortLastMessage: "SwiftUI HEYYOO",
                                                                  lastMessageDate: "Cuma"),
-                                            ModelMessageBoxModel(personIcon: "TugrulImage",
+                                            ModelMessageBoxModel(personIcon: "Tolga Mercan",
                                                                  personName: "Tuğrul Can Mercan",
                                                                  shortLastMessage: "SwiftUI HEYYOO",
                                                                  lastMessageDate: "Cuma")]
@@ -43,11 +43,9 @@ struct MessageViewPage: View {
                                 Text(item.personName)
                                 Text(item.shortLastMessage)
                                     .lineLimit(2)
-                                    
                                 
                                     .foregroundColor(.gray)
                             }
-                            
                             Spacer()
                             Text(item.lastMessageDate)
                                 .frame(width:50,height: 50, alignment: .topTrailing)
