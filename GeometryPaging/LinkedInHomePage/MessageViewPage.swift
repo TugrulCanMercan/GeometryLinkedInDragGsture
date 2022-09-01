@@ -19,9 +19,9 @@ struct MessageViewPage: View {
                                                                  personName: "Tuğrul Can Mercan",
                                                                  shortLastMessage: "SwiftUI HEYYOO",
                                                                  lastMessageDate: "Cuma"),
-                                            ModelMessageBoxModel(personIcon: "Tolga Mercan",
-                                                                 personName: "Tuğrul Can Mercan",
-                                                                 shortLastMessage: "SwiftUI HEYYOO",
+                                            ModelMessageBoxModel(personIcon: "steveJobs",
+                                                                 personName: " Steve Jobs",
+                                                                 shortLastMessage: "SwiftUI ve Combine öğrenmeye devam ediyorum",
                                                                  lastMessageDate: "Cuma")]
     var body: some View {
         VStack {

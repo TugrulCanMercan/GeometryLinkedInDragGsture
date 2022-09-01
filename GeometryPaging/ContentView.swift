@@ -11,15 +11,12 @@ struct ContentView: View {
     
     
     @GestureState var gestureOffset:CGFloat = .zero
-    @State var sideBarWidth = UIScreen.main.bounds.width / 1.5
-    @State var offset:CGFloat = .zero
-    @State var currentPosition:CGFloat = .zero
-    @State var currentIndex:Double = 0
-    @State var index:Double = 0
-    @State var lastStoredOffset:CGFloat = 0
-    var fullWidth = UIScreen.main.bounds.width
+    @State var offset: CGFloat = .zero
+    @State var lastStoredOffset:CGFloat = .zero
+    @State var homeOpacity: Double = 0.1
+    @State var storedHomeOpacity: Double = 0.1
+    var sideBarWidth =  UIScreen.main.bounds.width / 1.5
     
-    @State var val = 1
     
     var body: some View {
         ZStack{
@@ -31,80 +28,99 @@ struct ContentView: View {
                     LinkedInSideBar()
                         .frame(width: width/1.5, height: height)
                     LinkedInHomePage()
+                        
+                        .overlay(content: {
+                            Color.black
+                                .ignoresSafeArea()
+                                .opacity(homeOpacity)
+                        })
                         .frame(width: width, height: height)
+                        
+                        
+                        
                     MessageViewPage()
                         .frame(width: width, height: height)
                 }
                 
                 
-                
-                
-                
-                .offset(x: (offset - sideBarWidth) <= 0 ? offset - sideBarWidth : 0)
-                
+                .offset(x:offset - sideBarWidth)
                 .gesture(
                     DragGesture()
-                        .updating($gestureOffset, body: { value, out, _ in
-                            
+                        .updating($gestureOffset, body: {value, out, _ in
                             out = value.translation.width
                         })
                         .onChanged({ value in
-                            print("-----")
-                            print("onChanged trans\(value.translation.width)")
-                            print("gesture state\(gestureOffset)")
-                            print("last stored onchange\(lastStoredOffset)")
-                            print("-----")
-                            print("offset\(offset)")
-                            
-                            if gestureOffset != 0 {
-                                if gestureOffset + lastStoredOffset <= 1.5 * sideBarWidth && gestureOffset + lastStoredOffset >= -1.5 * sideBarWidth{
-                                    offset =  gestureOffset + lastStoredOffset
-                                } else {
-                                    offset = lastStoredOffset
-                                }
-                            }else {
-                                offset = offset
-                            }
-                            print("offset\(offset) ---")
-                            
-                        })
-                        .onEnded({ value in
+                            print(sideBarWidth)
                             let trans = value.translation.width
-                            print("trans\(trans)")
-                            if trans > 0 {
-                                if trans > (sideBarWidth / 1.5) && -lastStoredOffset != sideBarWidth * 1.5{
-                                    withAnimation(.easeInOut.speed(2)) {
-                                        offset = sideBarWidth
-                                    }
-                                } else {
-                                    if offset == sideBarWidth {
-                                        return
-                                    }
-                                    withAnimation(.easeInOut.speed(2)) {
-                                        offset = 0
+                            let lastOffset = trans + lastStoredOffset
+                            if trans != 0 {
+                                if lastOffset < sideBarWidth && -lastOffset < width {
+                                    offset = lastOffset
+                                    if lastOffset > 0 && lastOffset < sideBarWidth && trans > 0{
+                                        print("lastOffset\(lastOffset)")
+                                        homeOpacity = (lastOffset / width)
+                                    } else if lastOffset > 0 && lastOffset < sideBarWidth && trans < 0 {
+                                        homeOpacity = (lastOffset / width)
                                     }
                                 }
                             } else {
-                                print("lastStoredOffset\(lastStoredOffset)")
-                                if -trans < (sideBarWidth) && (lastStoredOffset == sideBarWidth){
-                                    withAnimation(.easeInOut.speed(2)) {
-                                        offset = 0
-                                    }
-                                }else {
-                                    if -lastStoredOffset + trans < -sideBarWidth * 2 {
-                                        withAnimation(.easeInOut.speed(2)) {
-                                            offset = 0
+                                offset = offset
+
+                            }
+                            print(offset)
+                        })
+                        .onEnded({ value in
+                            let trans = value.translation.width
+                            let sideBarTrans = sideBarWidth / 3
+                            if trans > 0 {
+                                if (lastStoredOffset + trans) < sideBarTrans {
+                                    if -(lastStoredOffset + trans) > (width - sideBarTrans) {
+                                        withAnimation {
+                                            offset = lastStoredOffset
                                         }
                                     } else {
-                                        withAnimation(.easeInOut.speed(2)) {
-                                            offset = -sideBarWidth * 1.5
+                                        withAnimation {
+                                            offset = 0
                                         }
                                     }
+                                  
+                                }else {
+                                    withAnimation {
+                                        offset = sideBarWidth
+                                    }
+                                }
+                               
+                            } else {
+                                if (lastStoredOffset + trans) < (sideBarWidth - sideBarTrans) {
+                                    if -(lastStoredOffset + trans) > (sideBarWidth - sideBarTrans) {
+                                        withAnimation {
+                                            offset = -width
+                                        }
+                                    } else {
+                                        withAnimation {
+                                            offset = 0
+                                        }
+                                    }
+                                  
+                                }else {
+                                    withAnimation {
+                                        offset = sideBarWidth
+                                    }
+                                    
                                 }
                             }
+                            
                             lastStoredOffset = offset
+                            withAnimation {
+                                homeOpacity = (offset / width)
+                            }
                         })
                 )
+                
+                
+                
+                
+                
             }
         }
     }
